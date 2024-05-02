@@ -402,7 +402,7 @@ public class LogIn extends javax.swing.JFrame {
             }
             if(notFound == 1 && Password.equals(passDb)){
                 Main MainFrame = new Main();
-                //MainFrame.setUser(name);
+                MainFrame.setUser(name);
                 MainFrame.setVisible(true);
                 MainFrame.pack();
                 MainFrame.setLocationRelativeTo(null);
