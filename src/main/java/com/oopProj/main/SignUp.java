@@ -230,17 +230,17 @@ public class SignUp extends javax.swing.JFrame {
         jLabel11.setIconTextGap(0);
 
         jLabel10.setBackground(new java.awt.Color(88, 109, 165));
-        jLabel10.setFont(new java.awt.Font("Poppins ExtraBold", 1, 36)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Archivo Black", 1, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(88, 109, 165));
         jLabel10.setText("SPARK YOUR");
 
         jLabel12.setBackground(new java.awt.Color(88, 109, 165));
-        jLabel12.setFont(new java.awt.Font("Poppins ExtraBold", 1, 36)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Archivo Black", 1, 36)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(88, 109, 165));
         jLabel12.setText("ELECtutor");
 
         jLabel13.setBackground(new java.awt.Color(88, 109, 165));
-        jLabel13.setFont(new java.awt.Font("Poppins ExtraBold", 1, 36)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Archivo Black", 1, 36)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(88, 109, 165));
         jLabel13.setText("CIRCUIT JOURNEY");
 
@@ -255,7 +255,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel15.setText("and");
 
         jLabel16.setBackground(new java.awt.Color(88, 109, 165));
-        jLabel16.setFont(new java.awt.Font("Poppins ExtraBold", 1, 36)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Archivo Black", 1, 36)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(88, 109, 165));
         jLabel16.setText("CIRCUITmate");
 
@@ -289,6 +289,15 @@ public class SignUp extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(306, 306, 306))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(198, 198, 198))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
@@ -305,22 +314,18 @@ public class SignUp extends javax.swing.JFrame {
                                 .addComponent(jLabel13))
                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(141, 141, 141))
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel10))))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(77, 77, 77)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jLabel10)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)))
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
@@ -334,7 +339,7 @@ public class SignUp extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(40, 40, 40)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

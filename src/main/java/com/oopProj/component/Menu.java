@@ -27,7 +27,7 @@ public class Menu extends javax.swing.JPanel {
     }
     
     private void init() {
-        listMenu1.addItem(new Model_Menu("Dashboard", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("Home", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("Formulas", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("Calculator", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("Simulator", Model_Menu.MenuType.MENU));

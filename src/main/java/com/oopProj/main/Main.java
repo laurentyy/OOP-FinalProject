@@ -8,7 +8,7 @@ import com.oopProj.event.EventMenuSelected;
 import com.oopProj.form.Assessments;
 import com.oopProj.form.Calculator;
 import com.oopProj.form.Library;
-import com.oopProj.form.Dashboard;
+import com.oopProj.form.Home;
 import com.oopProj.form.EducVideos;
 import com.oopProj.form.Formulas;
 import com.oopProj.form.Simulator;
@@ -32,9 +32,9 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if(index==0){
-                    //setForm(new Dashboard(Main.this));
-                    Dashboard dashboard = new Dashboard(Main.this);
-                    dashboard.someMethod(); // Call someMethod here
+                    //setForm(new Home(Main.this));
+                    Home dashboard = new Home(Main.this);
+                    dashboard.nameCustomized(); // Call someMethod here
                     setForm(dashboard);
                 }else if(index==1){
                     setForm(new Formulas());
