@@ -32,7 +32,10 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if(index==0){
-                    setForm(new Dashboard());
+                    //setForm(new Dashboard(Main.this));
+                    Dashboard dashboard = new Dashboard(Main.this);
+                    dashboard.someMethod(); // Call someMethod here
+                    setForm(dashboard);
                 }else if(index==1){
                     setForm(new Formulas());
                 }else if(index==2){
@@ -48,6 +51,7 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         });
+        
     }
     
     private void setForm(JComponent com){
@@ -222,6 +226,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanel;
     private com.oopProj.component.Menu menu;
     private com.oopProj.swing.PanelBorder panelBorder1;
-    private javax.swing.JLabel user;
+    public javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }

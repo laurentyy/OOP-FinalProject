@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.oopProj.form;
-
+import com.oopProj.main.Main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -17,12 +17,19 @@ import javax.swing.JPanel;
  * @author LENOVO
  */
 public class Dashboard extends javax.swing.JPanel {
+    private Main main;
+    
 
     /**
      * Creates new form Dashboard
      */
-    public Dashboard() {
+    public Dashboard(Main main) {
         initComponents();
+        this.main = main;
+    }
+    public void someMethod() {
+        String userName = main.user.getText();
+        userdashbrd.setText(userName);
     }
 
     /**
@@ -39,7 +46,7 @@ public class Dashboard extends javax.swing.JPanel {
         jPanel2 = new RoundedPanel(100, theColor);
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        userdashbrd = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -74,9 +81,9 @@ public class Dashboard extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Hello, ");
 
-        jLabel3.setFont(new java.awt.Font("Istok Web", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Name!");
+        userdashbrd.setFont(new java.awt.Font("Istok Web", 1, 18)); // NOI18N
+        userdashbrd.setForeground(new java.awt.Color(0, 0, 0));
+        userdashbrd.setText("Name");
 
         jLabel4.setFont(new java.awt.Font("Istok Web", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -113,7 +120,7 @@ public class Dashboard extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(1, 1, 1)
-                        .addComponent(jLabel3))
+                        .addComponent(userdashbrd))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -136,7 +143,7 @@ public class Dashboard extends javax.swing.JPanel {
                         .addGap(13, 13, 13)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(userdashbrd))
                         .addGap(1, 1, 1)
                         .addComponent(jLabel4)
                         .addGap(1, 1, 1)
@@ -197,7 +204,6 @@ public class Dashboard extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -207,6 +213,7 @@ public class Dashboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    public javax.swing.JLabel userdashbrd;
     // End of variables declaration//GEN-END:variables
 }
 

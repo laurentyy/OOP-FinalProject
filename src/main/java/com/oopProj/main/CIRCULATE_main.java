@@ -8,7 +8,7 @@ package com.oopProj.main;
  *
  * @author LENOVO
  */
-public class LogInandSignUp {
+public class CIRCULATE_main {
     public static void main(String[] args) {
         LogIn LogInFrame = new LogIn();
         LogInFrame.setVisible(true);

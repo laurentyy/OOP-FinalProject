@@ -2,6 +2,7 @@ package com.oopProj.main;
 
 
 
+import com.oopProj.form.Dashboard;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -383,10 +384,10 @@ public class LogIn extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection(SUrl,SUser, SPass);
             Statement st = con.createStatement();
             if("".equals(NameTextField.getText())){
-                JOptionPane.showMessageDialog(new JFrame(), "Name is required", "Error", 
+                JOptionPane.showMessageDialog(new JFrame(), "Name must be entered.", "Error", 
                         JOptionPane.ERROR_MESSAGE);
             }else if("".equals(PasswordField.getText())){
-                JOptionPane.showMessageDialog(new JFrame(), "Password is required", "Error", 
+                JOptionPane.showMessageDialog(new JFrame(), "Password must be entered.", "Error", 
                         JOptionPane.ERROR_MESSAGE);
             }else{
             Name = NameTextField.getText(); 
@@ -417,6 +418,7 @@ public class LogIn extends javax.swing.JFrame {
         }catch(Exception e){
             System.out.println("Error!" + e.getMessage());
         }
+        
         
     }//GEN-LAST:event_LogInButtonActionPerformed
 

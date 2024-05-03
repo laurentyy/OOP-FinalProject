@@ -387,20 +387,20 @@ public class SignUp extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection(SUrl,SUser, SPass);
             Statement st = con.createStatement();
             if("".equals(NameTextField.getText())){
-                JOptionPane.showMessageDialog(new JFrame(), "Name is required", "Error", 
+                JOptionPane.showMessageDialog(new JFrame(), "Name must be entered.", "Error", 
                         JOptionPane.ERROR_MESSAGE);
             }else if("".equals(PasswordField.getText())){
-                JOptionPane.showMessageDialog(new JFrame(), "Password is required", "Error", 
+                JOptionPane.showMessageDialog(new JFrame(), "Password must be entered.", "Error", 
                         JOptionPane.ERROR_MESSAGE);
             }else if("".equals(ConfirmPasswordField.getText())){
-                JOptionPane.showMessageDialog(new JFrame(), "Confirm Password is required", "Error", 
+                JOptionPane.showMessageDialog(new JFrame(), "Confirm Password must be entered.", "Error", 
                         JOptionPane.ERROR_MESSAGE);
             }else{
             Name = NameTextField.getText(); 
             Password = PasswordField.getText(); 
             ConfirmPassword = ConfirmPasswordField.getText();
             if(!Password.equals(ConfirmPassword)){
-            JOptionPane.showMessageDialog(null, "Password and confirm password do not match.", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Hey, password does not match the confirmation password!", "Warning", JOptionPane.WARNING_MESSAGE);
             }else{
                 System.out.println(Password);
                 query = "INSERT INTO user(name, password)" + 
@@ -409,7 +409,7 @@ public class SignUp extends javax.swing.JFrame {
                 NameTextField.setText("");
                 PasswordField.setText("");
                 ConfirmPasswordField.setText("");
-                showMessageDialog(null, "New account has been created successfully!");
+                showMessageDialog(null, "The creation of the new account was completed!");
             }
             
             }
