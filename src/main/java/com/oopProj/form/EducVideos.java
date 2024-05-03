@@ -52,6 +52,11 @@ public class EducVideos extends javax.swing.JPanel {
         AllLessonsButton.setBackground(new java.awt.Color(245, 245, 245));
         AllLessonsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/All Lessons (1) (1).png"))); // NOI18N
         AllLessonsButton.setBorder(null);
+        AllLessonsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AllLessonsButtonActionPerformed(evt);
+            }
+        });
 
         FEEButton.setBackground(new java.awt.Color(245, 245, 245));
         FEEButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FEE button.png"))); // NOI18N
@@ -113,6 +118,10 @@ public class EducVideos extends javax.swing.JPanel {
                 .addContainerGap(62, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AllLessonsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllLessonsButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AllLessonsButtonActionPerformed
 
     private void openAllLessons() {
         jPanel1.removeAll();
