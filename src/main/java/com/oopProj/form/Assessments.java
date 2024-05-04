@@ -229,7 +229,6 @@ public class Assessments extends javax.swing.JPanel {
         jButton14.setBorderPainted(false);
         jButton14.setContentAreaFilled(false);
         jButton14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton14.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
@@ -241,7 +240,6 @@ public class Assessments extends javax.swing.JPanel {
         jButton15.setBorderPainted(false);
         jButton15.setContentAreaFilled(false);
         jButton15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton15.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton15ActionPerformed(evt);
@@ -254,7 +252,6 @@ public class Assessments extends javax.swing.JPanel {
         jButton16.setContentAreaFilled(false);
         jButton16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton16.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16ActionPerformed(evt);
@@ -267,7 +264,6 @@ public class Assessments extends javax.swing.JPanel {
         jButton17.setContentAreaFilled(false);
         jButton17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jButton17.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton17.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton17ActionPerformed(evt);
@@ -280,11 +276,11 @@ public class Assessments extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 46, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 46, Short.MAX_VALUE)
                 .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -310,7 +306,7 @@ public class Assessments extends javax.swing.JPanel {
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
