@@ -395,7 +395,7 @@ public class LogIn extends javax.swing.JFrame {
 
     private void LogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogInButtonActionPerformed
         //System.out.println("Sign up button clicked!");
-        String Name, Password, query, name = null, passDb = null;
+        String Name, Password, query, name = null, passDb = null, id = null;
         String SUrl, SUser, SPass;
         SUrl = "jdbc:MySQL://localhost:3306/circulate_user_database";
         SUser = "root";
@@ -422,12 +422,13 @@ public class LogIn extends javax.swing.JFrame {
             while(rs.next()){
                 passDb = rs.getString("password");
                 name = rs.getString("name");
+                id = rs.getString("id");
                 notFound = 1;
             
             }
             if(notFound == 1 && Password.equals(passDb)){
                 Main MainFrame = new Main();
-                MainFrame.setUser(name);
+                MainFrame.setUser(name + id);
                 MainFrame.setVisible(true);
                 MainFrame.pack();
                 MainFrame.setLocationRelativeTo(null);
