@@ -7,18 +7,53 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.JOptionPane;
 
 public class Assessments extends javax.swing.JFrame {
 
+   Timer timer;
+   int timeLeft = 60;
+   int currentQuestionNo = 1;
    
     public Assessments() {
         initComponents();
         Connect();
         LoadQuestions();
+    opt1.addActionListener(e -> enableNextButton());
+    opt2.addActionListener(e -> enableNextButton());
+    opt3.addActionListener(e -> enableNextButton());
+    opt4.addActionListener(e -> enableNextButton());
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date now = new Date();
+        dateTxt.setText(sdf.format(now));
+        
+         timer = new Timer(1000, (e) -> {
+            timeLeft--;
+            // Update the display of minutes and seconds
+            int minutesLeft = timeLeft / 60;
+            int secondsLeft = timeLeft % 60;
+            minutes.setText(String.format("%02d", minutesLeft));
+            seconds.setText(String.format("%02d", secondsLeft));
+            // If time is up, stop the timer and show a message
+            if (timeLeft <= 0) {
+                timer.stop();
+                JOptionPane.showMessageDialog(this, "Time's up! Your score: " + txtmarks.getText() + " points.");
+            }
+        });
+        timer.start(); // Start the timer
+        
     }
+    private void enableNextButton() {
+    nextButton.setEnabled(opt1.isSelected() || opt2.isSelected() || opt3.isSelected() || opt4.isSelected());
+}
+    
     int answercheck = 0;
     int marks = 0;
     
@@ -42,26 +77,23 @@ public class Assessments extends javax.swing.JFrame {
             marks++;
             answercheck++;
             txtmarks.setText(String.valueOf(marks));
-        }else if(!answerAnswer.equals(cor) && answer!= null){
-            if(marks > 0){
-                marks--;
-            }
-            txtmarks.setText(String.valueOf(marks));
         }
-        if(!answerAnswer.equals("")){
-        try{
+    
+    // Update given answer in the database
+    if (!answerAnswer.equals("")) {
+        try {
             String query = "UPDATE question SET givenanswer = ? WHERE question = ?";
             pst = con.prepareStatement(query);
             pst.setString(1, answerAnswer);
             pst.setString(2, questionstatement.getText());
             pst.execute();
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return true;
     }
-        return false;
-    }
+    return false;
+}
     
     private void NullAllGivenAnswers(){
         try{
@@ -142,10 +174,8 @@ public class Assessments extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Assessments.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    
     }
-
+ 
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -166,16 +196,17 @@ public class Assessments extends javax.swing.JFrame {
         txtmarks = new javax.swing.JLabel();
         nextButton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        restartButton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        minutes = new javax.swing.JLabel();
+        seconds = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton18 = new javax.swing.JButton();
+        submitButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        dateTxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -242,9 +273,9 @@ public class Assessments extends javax.swing.JFrame {
                     .addComponent(opt2)
                     .addComponent(opt3)
                     .addComponent(opt4))
-                .addContainerGap(399, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(questionNoTxt)
@@ -276,7 +307,7 @@ public class Assessments extends javax.swing.JFrame {
         );
 
         jLabel8.setFont(new java.awt.Font("Inter", 1, 18)); // NOI18N
-        jLabel8.setText("POINTS: ");
+        jLabel8.setText("POINT/S: ");
 
         txtmarks.setFont(new java.awt.Font("Inter", 1, 18)); // NOI18N
         txtmarks.setText("0");
@@ -286,6 +317,7 @@ public class Assessments extends javax.swing.JFrame {
         nextButton.setForeground(new java.awt.Color(0, 0, 0));
         nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/nextCircle.png"))); // NOI18N
         nextButton.setText("Next");
+        nextButton.setEnabled(false);
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextButtonActionPerformed(evt);
@@ -293,37 +325,52 @@ public class Assessments extends javax.swing.JFrame {
         });
 
         jLabel10.setFont(new java.awt.Font("Inter", 1, 18)); // NOI18N
-        jLabel10.setText("TOTAL QUESTION: 10");
+        jLabel10.setText("| TOTAL QUESTION: 10");
+
+        restartButton.setBackground(new java.awt.Color(185, 177, 238));
+        restartButton.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        restartButton.setForeground(new java.awt.Color(0, 0, 0));
+        restartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reset1.png"))); // NOI18N
+        restartButton.setText("Restart");
+        restartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restartButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtmarks)
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel10)
-                        .addGap(109, 109, 109)
-                        .addComponent(nextButton))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtmarks)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addGap(39, 39, 39)
+                .addComponent(restartButton)
+                .addGap(3, 3, 3)
+                .addComponent(nextButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtmarks)
                     .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(restartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -334,19 +381,19 @@ public class Assessments extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("TIMER");
 
-        jLabel2.setBackground(new java.awt.Color(215, 208, 255));
-        jLabel2.setFont(new java.awt.Font("Istok Web", 1, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("00");
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel2.setOpaque(true);
+        minutes.setBackground(new java.awt.Color(215, 208, 255));
+        minutes.setFont(new java.awt.Font("Istok Web", 1, 24)); // NOI18N
+        minutes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        minutes.setText("00");
+        minutes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        minutes.setOpaque(true);
 
-        jLabel3.setBackground(new java.awt.Color(215, 208, 255));
-        jLabel3.setFont(new java.awt.Font("Istok Web", 1, 24)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("00");
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel3.setOpaque(true);
+        seconds.setBackground(new java.awt.Color(215, 208, 255));
+        seconds.setFont(new java.awt.Font("Istok Web", 1, 24)); // NOI18N
+        seconds.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        seconds.setText("00");
+        seconds.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        seconds.setOpaque(true);
 
         jLabel4.setBackground(new java.awt.Color(215, 208, 255));
         jLabel4.setFont(new java.awt.Font("Istok Web", 1, 24)); // NOI18N
@@ -354,13 +401,14 @@ public class Assessments extends javax.swing.JFrame {
         jLabel4.setText(":");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButton18.setBackground(new java.awt.Color(215, 208, 255));
-        jButton18.setFont(new java.awt.Font("Istok Web", 1, 14)); // NOI18N
-        jButton18.setForeground(new java.awt.Color(255, 255, 255));
-        jButton18.setText("SUBMIT");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
+        submitButton.setBackground(new java.awt.Color(185, 177, 238));
+        submitButton.setFont(new java.awt.Font("Istok Web", 1, 14)); // NOI18N
+        submitButton.setForeground(new java.awt.Color(0, 0, 0));
+        submitButton.setText("SUBMIT");
+        submitButton.setEnabled(false);
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+                submitButtonActionPerformed(evt);
             }
         });
 
@@ -377,72 +425,72 @@ public class Assessments extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Istok Web", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("5 MINUTES");
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("1 MINUTE");
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Istok Web", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("TOTAL TIME");
+        dateTxt.setBackground(new java.awt.Color(255, 255, 255));
+        dateTxt.setFont(new java.awt.Font("Istok Web", 1, 18)); // NOI18N
+        dateTxt.setForeground(new java.awt.Color(255, 255, 255));
+        dateTxt.setText("TOTAL TIME");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(submitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1)
+                        .addGap(78, 78, 78)
+                        .addComponent(jLabel5)
+                        .addGap(0, 12, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(84, 84, 84)
-                                .addComponent(jLabel5)
-                                .addGap(10, 10, 10))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel7)))
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(jLabel9)
-                                .addGap(0, 23, Short.MAX_VALUE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
-                                .addGap(55, 55, 55)))))
-                .addContainerGap())
+                        .addComponent(minutes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(seconds, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(dateTxt)
+                        .addGap(0, 29, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(64, 64, 64))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel5)))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4))
+                            .addComponent(minutes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(seconds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel7))
                         .addGap(12, 12, 12))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9))
+                        .addComponent(dateTxt)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jButton18))
+                .addComponent(submitButton))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -452,12 +500,12 @@ public class Assessments extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(89, 89, 89)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,39 +545,78 @@ public class Assessments extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_opt1ActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton18ActionPerformed
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        timer.stop();
+    
+    int marks = Integer.parseInt(txtmarks.getText());
+    String message;
+    
+    if (marks == 0) {
+        message = "Oops! Your score is 0 point. Better luck next time!";
+    } else if (marks >= 1 && marks <= 5) {
+        message = "Not bad! Your score is " + marks + " point/s.";
+    } else if (marks >= 6 && marks <= 7) {
+        message = "Great job! Your score is " + marks + " points.";
+    } else if (marks >= 8 && marks <= 10) {
+        message = "Excellent! Your score is " + marks + " points.";
+    } else {
+        message = "Invalid score!";
+    }
+    
+    JOptionPane.showMessageDialog(this, message);
+
+    }//GEN-LAST:event_submitButtonActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        // TODO add your handling code here:
-        
-        if(answerCheck()){
 
-            try{
-                if(rs.next()){
-                    questionstatement.setText(rs.getString("question"));
-                    opt1.setText(rs.getString(3));
-                    opt2.setText(rs.getString(4));
-                    opt3.setText(rs.getString(5));
-                    opt4.setText(rs.getString(6));
-                    cor = rs.getString(7);
+        if (!answerCheck()) {
+        // Show a message asking the user to select an option
+        JOptionPane.showMessageDialog(this, "Please select an option before proceeding to the next question.");
+        return;
+    }
 
-                    if(!AlreadyAnswered()){
-                        buttonGroup1.clearSelection();
-                    }
+    try {
+        if (rs.next()) {
+            ++currentQuestionNo; // Increment current question number
+            questionNo.setText(Integer.toString(currentQuestionNo)); // Update question number label
 
-                }
-                else{
-                    JOptionPane.showMessageDialog(this, "This is first record of user");
-                }
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
+            questionstatement.setText(rs.getString("question"));
+            opt1.setText(rs.getString(3));
+            opt2.setText(rs.getString(4));
+            opt3.setText(rs.getString(5));
+            opt4.setText(rs.getString(6));
+            cor = rs.getString(7);
 
+            // Clear radio button selection
+            buttonGroup1.clearSelection();
+
+        } else {
+            submitButton.setEnabled(true);
+            nextButton.setVisible(false);
         }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
     }//GEN-LAST:event_nextButtonActionPerformed
+
+    private void restartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartButtonActionPerformed
+    // Reset currentQuestionNo to 1
+    currentQuestionNo = 1;
+    questionNo.setText(Integer.toString(currentQuestionNo)); // Update question number label
+
+    // Reset marks to 0 and update the display
+    marks = 0;
+    txtmarks.setText("0");
+
+    // Reload the first question
+    LoadQuestions();
+
+    // Reset timer
+    timeLeft = 60;
+    timer.restart();
+    
+    nextButton.setVisible(true);
+    }//GEN-LAST:event_restartButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -568,21 +655,19 @@ public class Assessments extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton18;
+    private javax.swing.JLabel dateTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel minutes;
     private javax.swing.JButton nextButton;
     private javax.swing.JRadioButton opt1;
     private javax.swing.JRadioButton opt2;
@@ -591,6 +676,9 @@ public class Assessments extends javax.swing.JFrame {
     private javax.swing.JLabel questionNo;
     private javax.swing.JLabel questionNoTxt;
     private javax.swing.JLabel questionstatement;
+    private javax.swing.JButton restartButton;
+    private javax.swing.JLabel seconds;
+    private javax.swing.JButton submitButton;
     private javax.swing.JLabel txtmarks;
     // End of variables declaration//GEN-END:variables
 }

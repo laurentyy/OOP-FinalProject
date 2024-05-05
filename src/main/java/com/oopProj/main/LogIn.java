@@ -427,12 +427,16 @@ public class LogIn extends javax.swing.JFrame {
             
             }
             if(notFound == 1 && Password.equals(passDb)){
-                Main MainFrame = new Main();
-                MainFrame.setUser(name + id);
-                MainFrame.setVisible(true);
-                MainFrame.pack();
-                MainFrame.setLocationRelativeTo(null);
-                this.dispose();
+                setVisible(false);
+                new Main(name).setVisible(true);
+                
+                
+//                Main MainFrame = new Main();
+//                MainFrame.setUser(name + id);
+//                MainFrame.setVisible(true);
+//                MainFrame.pack();
+//                MainFrame.setLocationRelativeTo(null);
+//                this.dispose();
             }else{
                 JOptionPane.showMessageDialog(new JFrame(), "Incorrect Name or Password", "Error", 
                         JOptionPane.ERROR_MESSAGE);

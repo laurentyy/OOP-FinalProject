@@ -14,28 +14,32 @@ import com.oopProj.form.Formulas;
 import com.oopProj.form.Simulator;
 import java.awt.Color;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author LENOVO
  */
 public class Main extends javax.swing.JFrame {
+public String name;
 
-    /**
-     * Creates new form Main
-     */
+   
     public Main() {
         initComponents();
+    }
+    
+    public Main(String name3) {
+        initComponents();
+        user.setText(name3);
         setBackground(new Color(0,0,0,0));
         menu.initMoving(Main.this);
         menu.addEventMenuSelected(new EventMenuSelected() {
             @Override
             public void selected(int index) {
                 if(index==0){
-                    //setForm(new Home(Main.this));
-                    Home dashboard = new Home(Main.this);
-                    dashboard.nameCustomized(); // Call someMethod here
-                    setForm(dashboard);
+                    Home homeForm = new Home(name3);
+                    homeForm.setVisible(true);
+                    setForm(homeForm);
                 }else if(index==1){
                     setForm(new Formulas());
                 }else if(index==2){
@@ -45,14 +49,17 @@ public class Main extends javax.swing.JFrame {
                 }else if(index==4){
                     setForm(new EducVideos());
                 }else if(index==5){
-                    setForm(new Assessments());
+                    mainPanel.removeAll();
+                    Assessments assessmentsForm = new Assessments();
+                    mainPanel.add(assessmentsForm.getContentPane());
+                    mainPanel.revalidate();
+                    mainPanel.repaint();
                 }else if(index==6){
                     setForm(new Library());
                 }
             }
         });
-        
-    }
+        }
     
     private void setForm(JComponent com){
         mainPanel.removeAll();
@@ -181,12 +188,7 @@ public class Main extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
-    public void setUser(String name){
-        user.setText(name);
-    }
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
