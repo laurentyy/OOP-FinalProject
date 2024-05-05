@@ -22,9 +22,9 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="libraryPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
@@ -59,18 +59,11 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="279" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
+              <Component id="jScrollPane1" alignment="1" pref="283" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -79,7 +72,8 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="486" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="471" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -114,20 +108,18 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="Lesson13Button" max="32767" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="Lesson1Button" max="32767" attributes="0"/>
-                                  <Component id="Lesson2Button" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Lesson3Button" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Lesson4Button" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Lesson5Button" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Lesson6Button" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Lesson7Button" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Lesson8Button" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Lesson9Button" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Lesson12Button" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Lesson11Button" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Lesson10Button" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="Lesson1Button" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Lesson2Button" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Lesson3Button" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Lesson4Button" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Lesson5Button" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Lesson6Button" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Lesson7Button" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Lesson8Button" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Lesson9Button" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Lesson12Button" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Lesson11Button" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Lesson10Button" alignment="0" max="32767" attributes="0"/>
                               <Component id="Lesson14Button" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
