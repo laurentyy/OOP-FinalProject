@@ -12,7 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.JOptionPane;
 
@@ -26,10 +25,10 @@ public class Assessments extends javax.swing.JFrame {
         initComponents();
         Connect();
         LoadQuestions();
-    opt1.addActionListener(e -> enableNextButton());
-    opt2.addActionListener(e -> enableNextButton());
-    opt3.addActionListener(e -> enableNextButton());
-    opt4.addActionListener(e -> enableNextButton());
+        opt1.addActionListener(e -> enableNextButton());
+        opt2.addActionListener(e -> enableNextButton());
+        opt3.addActionListener(e -> enableNextButton());
+        opt4.addActionListener(e -> enableNextButton());
         
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date now = new Date();

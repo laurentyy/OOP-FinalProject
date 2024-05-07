@@ -213,7 +213,7 @@ public class LogIn extends javax.swing.JFrame {
         );
 
         jLabel19.setFont(new java.awt.Font("Montserrat", 1, 48)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setForeground(new java.awt.Color(88, 109, 165));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("LOG IN");
 
